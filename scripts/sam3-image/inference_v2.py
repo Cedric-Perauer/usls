@@ -80,15 +80,17 @@ class Sam3ONNXInferenceV2:
         image_height: int = 504,
         image_width: int = 896,
         device: str = "cuda",
+        providers=None,
     ):
         self.image_height = image_height
         self.image_width = image_width
 
-        providers = (
-            ["CUDAExecutionProvider", "CPUExecutionProvider"]
-            if device == "cuda"
-            else ["CPUExecutionProvider"]
-        )
+        if providers is None:
+            providers = (
+                ["CUDAExecutionProvider", "CPUExecutionProvider"]
+                if device == "cuda"
+                else ["CPUExecutionProvider"]
+            )
 
         self.vision_encoder = ort.InferenceSession(
             vision_encoder_path, providers=providers
