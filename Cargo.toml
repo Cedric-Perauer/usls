@@ -297,6 +297,11 @@ path = "examples/open-set-segmentation/main.rs"
 required-features = ["vision", "vlm", "annotator"]
 
 [[example]]
+name = "sam3-image-compiled"
+path = "examples/sam3-image-compiled/main.rs"
+required-features = ["vlm", "annotator"]
+
+[[example]]
 name = "bytetrack"
 path = "examples/bytetrack/main.rs"
 required-features = ["mot", "viewer", "video"]
