@@ -36,7 +36,6 @@ def parse_box_prompts(box_str: str) -> tuple[list, list]:
         labels.append(label)
     return boxes, labels
 
-
 def xywh_to_cxcywh_normalized(boxes: list, img_w: int, img_h: int) -> np.ndarray:
     """Convert xywh (pixel) to cxcywh (normalized)"""
     result = []
@@ -60,12 +59,14 @@ class Sam3ONNXInference:
         decoder_path: str,
         tokenizer_path: str,
         device: str = "cuda",
+        providers=None,
     ):
-        providers = (
-            ["CUDAExecutionProvider", "CPUExecutionProvider"]
-            if device == "cuda"
-            else ["CPUExecutionProvider"]
-        )
+        if providers is None:
+            providers = (
+                ["CUDAExecutionProvider", "CPUExecutionProvider"]
+                if device == "cuda"
+                else ["CPUExecutionProvider"]
+            )
 
         print("Loading ONNX models...")
         self.vision_encoder = ort.InferenceSession(

@@ -1,0 +1,5 @@
+# Generated artifacts (models are large; engines/logs/outputs are reproducible)
+*.log
+*.png
+trt-cache/
+# onnx-models/ and .venv/ are already ignored by the repo-root .gitignore
